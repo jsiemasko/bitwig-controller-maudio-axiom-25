@@ -8,6 +8,16 @@
     <meta name="MSSmartTagsPreventParsing" content="true"/>
     <meta name="author" content="Bitwig GmbH"/>
     <style type="text/css" media="all">@import "../doc/bitwig.css";</style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        th {
+            background-color: lightgrey;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,30 +30,118 @@
         </div>
     </div>
     <div id="introduction">
-        <p>This script was written for an Axiom 25 on factory preset 1,
+        <p>This script was written for a Axiom 25 on a modified version of factory preset 1,
         i.e. the state of the keyboard after a factory reset.</p>
+        
+        <h3>Create the preset</h3>
+        <p>In order to use this script all encoders must be set to "2’s Compliment from 64 / Relative (Binary Offset)" mode.
+        this is accomplished by using the following process for each encoder.</p>
+        <ol>
+            <li>Press the Advanced button.</li>
+            <li>Press Ctrl Assign key.</li>
+            <li>Turn the encoder you wish to map.</li>
+            <li>Enter 146 using the keys.</li>
+            <li>Press the Enter key.</li>
+            <li>Press the Data 2 key.</li>
+            <li>Enter the CC number you would like the encoder to transmit.</li>
+            <li>Press the Enter key.</li>
+        </ol>
+        <table>
+            <tr>
+                <th>Encoder #</th>
+                <th>Macro #</th>
+                <th>CC #</th>
+                <th>Data 2</th>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>1</td>
+                <td>146</td>
+                <td>71</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>2</td>
+                <td>146</td>
+                <td>74</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>3</td>
+                <td>146</td>
+                <td>84</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>4</td>
+                <td>146</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>5</td>
+                <td>146</td>
+                <td>91</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>6</td>
+                <td>146</td>
+                <td>93</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>7</td>
+                <td>146</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>8</td>
+                <td>146</td>
+                <td>10</td>
+            </tr>
+        </table>
+        <p>After all the encoders have been mapped save the preset.</p>
+        <ol>
+            <li>Press the Advanced button.</li>
+            <li>Press the Store key.</li>
+            <li>Pick the location you would like to store your preset.</li>
+            <li>Press the Enter key.</li>
+        </ol>
     </div>
 
-    <h3>Rotary encoders.</h3>
-    <p>The rotary encoders are by default mapped to the device macros of the primary device of the current track.
-    You can toggle between device macros and common parameters using the drum pad C14.</p>
-
-    <h3>Transport buttons</h3>
-    <p>
-        <ul>
-            <li>Loop: Toggles the VST window if your primary device is a VST.</li>
-            <li>Rewind: Selects the previous track.</li>
-            <li>Forward: Selects the next track.</li>
-            <li>Stop: Stops playback and sets the play position to the start of the arrangement.</li>
-            <li>Play: Starts playback of the arrangement.</li>
-            <li>Record: Starts recording for armed tracks.</li>
-        </ul>
-    </p>
-
-    <h3>Drum pads</h3>
-    <ul>
-        <li>C14: Toggles the assignment of the rotary encoders between device macros and common parameters.</li>
-    </ul>
+    <table>
+        <tr>
+            <td>
+                <h3>Keys</h3>
+                <p>The keys are mapped as a note input named "Axiom 25 - Keys".</p>
+            </td>
+            <td>
+                <h3>Drum Pads</h3>
+                <p>The drum pads are mapped as a note input named "Axiom 25 - Pads".</p>
+            </td>
+        </tr>    
+        <tr>
+            <td>
+                <h3>Rotary encoders</h3>
+                <p>The rotary encoders are by mapped to the macros of the primary device of the current track.</p>
+            </td>
+            <td>
+                <h3>Transport buttons</h3>
+                <p>
+                    <ul>
+                        <li>Loop: Toggles the VST window if your primary device is a VST.</li>
+                        <li>Rewind: Selects the previous track.</li>
+                        <li>Forward: Selects the next track.</li>
+                        <li>Stop: Stops playback and sets the play position to the start of the arrangement.</li>
+                        <li>Play: Starts playback of the arrangement.</li>
+                        <li>Record: Starts recording for armed tracks.</li>
+                    </ul>
+                </p>            
+            </td>
+        </tr>    
+    </table>
 </div>
 </body>
 </html>

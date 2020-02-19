@@ -8,7 +8,13 @@ See installation instructions: [Controller Script Installation Guide](https://ww
 In order to use the encoder mappings a preset needs to be modified on the Hardware.  Instructions are included in the controller script help file.
 
 ## Usage
-The script will provide 2 different Note Inputs, one from the keys and one from the drum pads.
+The script will provide 5 different Note Inputs.
+* Axiom 25 - Keys - Zone 1
+* Axiom 25 - Keys - Zone 2
+* Axiom 25 - Keys - Zone 3
+* Axiom 25 - Pads
+* Axiom 25 - MIDI In
+
 The encoders map to the macros of the main device on the current track.
 Transport controls are mapped as follows:
 | Control      | Mapping                    |
@@ -21,6 +27,10 @@ Transport controls are mapped as follows:
 | Record       | Record on armed tracks     |
 
 ## History
+### 1.1
+* Separated zones into separate note inputs.
+* Created a note input for Hardware MIDI In.
+
 ### 1.0
 * Changed auto-detect name to match what my Axiom was showing.
 * Added Drum Pads as a separate note input.

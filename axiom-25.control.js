@@ -1,8 +1,8 @@
 loadAPI(10);
 
 host.defineController("M-Audio", "Axiom 25", "1.0", "436eb006-523d-4fd4-adf1-431af7803e53");
-host.defineMidiPorts(1, 1);
-host.addDeviceNameBasedDiscoveryPair(["USB Axiom 25"], ["USB Axiom 25"]);
+host.defineMidiPorts(2, 1);
+host.addDeviceNameBasedDiscoveryPair(["USB Axiom 25", "MIDIIN2 (USB Axiom 25)"], ["USB Axiom 25"]);
 host.defineSysexIdentityReply("F0 7E 7F 06 02 00 20 08 63 0E 18 03 20 31 30 30 F7");
 
 var ccToMacroNum = {
@@ -27,7 +27,7 @@ var transportCC = {
 
 function init() {
     host.getMidiInPort(0).setMidiCallback(onMidi);
-    setupSysex();    
+    setupSysex();
     transport = host.createTransport();
     cursorTrack = host.createCursorTrack(2, 0);
     cursorDevice = cursorTrack.getPrimaryDevice();
@@ -59,22 +59,33 @@ function setIndications()
  */
 function createNoteInputs()
 {
-    var noteInput = host.getMidiInPort(0).createNoteInput("Keys",
+    var noteInputZone1 = host.getMidiInPort(0).createNoteInput("Keys - Zone 1",
         "80????", "90????", "B001??", "B002??", "B00B??", "B040??", "C0????", "D0????", "E0????");
-    noteInput.setShouldConsumeEvents(false);
+    noteInputZone1.setShouldConsumeEvents(false);
+
+    var noteInputZone2 = host.getMidiInPort(0).createNoteInput("Keys - Zone 2",
+        "81????", "91????", "B101??", "B102??", "B10B??", "B140??", "C1????", "D1????", "E1????");
+    noteInputZone2.setShouldConsumeEvents(false);
+
+    var noteInputZone3 = host.getMidiInPort(0).createNoteInput("Keys - Zone 3",
+        "82????", "92????", "B201??", "B202??", "B20B??", "B240??", "C2????", "D2????", "E2????");
+    noteInputZone3.setShouldConsumeEvents(false);
 
     var padInput = host.getMidiInPort(0).createNoteInput("Pads",
         "89????", "99????", "B901??", "B902??", "B90B??", "B940??", "C9????", "D9????", "E9????");
     padInput.setShouldConsumeEvents(false);
+
+    var midiInput = host.getMidiInPort(0).createNoteInput("MIDI In", "");
+        midiInput.setShouldConsumeEvents(false);
 }
 
 /*
- * Called on every MIDI message that is not used for a note input 
+ * Called on every MIDI message that is not used for a note input
  */
 function onMidi(status, data1, data2) {
-    if (isChannelController(status)) {        
+    if (isChannelController(status)) {
         var macroNum = ccToMacroNum[data1];
-        
+
         if(macroNum != undefined)
         {
             incrementEncoder(macroNum, data2);
